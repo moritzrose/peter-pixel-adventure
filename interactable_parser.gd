@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var interactable_list: Node2D
 @export var object_mapping: InteractableMapping
 @export var tile_map_layer: TileMapLayer:
 	set(new_layer):
@@ -18,4 +19,4 @@ func add_object(id, pos):
 		var scene = obj.get("scene")
 		var new_obj = scene.instantiate()
 		new_obj.position = pos * GameConstants.TILE_SIZE
-		add_child(new_obj)
+		interactable_list.add_child(new_obj)

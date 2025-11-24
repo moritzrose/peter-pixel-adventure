@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1ffl3th3gtnn"]
+
+[ext_resource type="Script" uid="uid://bpwvo0ehs6q1c" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c3cfpigs3kqg8" path="res://garage/garage.tscn" id="1_ig7tw"]
+
+[node name="Main" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xm2m")
+
+[node name="Levelcontainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1280, 450)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Garage" parent="Levelcontainer" instance=ExtResource("1_ig7tw")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Actions" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 4
+
+[node name="Use" type="Button" parent="HBoxContainer/Actions"]
+layout_mode = 2
+text = "Benutzen"
+
+[node name="Open" type="Button" parent="HBoxContainer/Actions"]
+layout_mode = 2
+text = "Öffnen"
+
+[node name="Close" type="Button" parent="HBoxContainer/Actions"]
+layout_mode = 2
+text = "Schließen"
+
+[node name="Take" type="Button" parent="HBoxContainer/Actions"]
+layout_mode = 2
+text = "Nehmen"
+
+[node name="Inventory" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Inventory"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="HBoxContainer/Actions/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="HBoxContainer/Actions/Open" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="HBoxContainer/Actions/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="HBoxContainer/Actions/Take" to="." method="_on_take_pressed"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmb6w5irwjmup"]
+
+[ext_resource type="Script" uid="uid://unnl810fykpp" path="res://garage/fuse_box.gd" id="1_mrdrc"]
+[ext_resource type="Texture2D" uid="uid://bbgc4ewb3f32m" path="res://house-interiors-tileset-pack/mp_house_interiors_tileset_pack/tilemap_all.png" id="1_tetjj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrdrc"]
+size = Vector2(16, 16)
+
+[node name="Fusebox" type="Area2D"]
+script = ExtResource("1_mrdrc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_tetjj")
+region_enabled = true
+region_rect = Rect2(96, 480, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_mrdrc")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

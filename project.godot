@@ -10,9 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Point And Click Spielewiese"
-run/main_scene="uid://c3cfpigs3kqg8"
+config/name="Peter Pixels Adventure"
+run/main_scene="uid://d1ffl3th3gtnn"
 config/features=PackedStringArray("4.5", "Forward Plus")
+
+[autoload]
+
+Actions="*res://actions.gd"
 
 [display]
 

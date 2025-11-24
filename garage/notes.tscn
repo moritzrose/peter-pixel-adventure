@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk3umn5gr38ok"]
+
+[ext_resource type="Texture2D" uid="uid://bbgc4ewb3f32m" path="res://house-interiors-tileset-pack/mp_house_interiors_tileset_pack/tilemap_all.png" id="1_2obsu"]
+[ext_resource type="Script" uid="uid://bq2y85xokmjy6" path="res://garage/notes.gd" id="1_sv04c"]
+
+[node name="Notes" type="Area2D"]
+script = ExtResource("1_sv04c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 24)
+texture = ExtResource("1_2obsu")
+offset = Vector2(0, -16)
+region_enabled = true
+region_rect = Rect2(480, 576, 48, 32)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(8, 8)
+polygon = PackedVector2Array(-22, -13, -7, -10, 3, -10, 12, -9, 13, -5, 12, 1, 17, 5, 16, 10, 13, 10, 8, 7, 2, 0, -5, 7, -8, 10, -14, 10, -17, 6, -20, 1)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
