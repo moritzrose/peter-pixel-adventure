@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://pg7ldxukb80q"]
+
+[ext_resource type="Texture2D" uid="uid://bbgc4ewb3f32m" path="res://house-interiors-tileset-pack/mp_house_interiors_tileset_pack/tilemap_all.png" id="1_34gi2"]
+[ext_resource type="Script" uid="uid://coergrp50ufrp" path="res://toolbox.gd" id="1_hf060"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hf060"]
+atlas = ExtResource("1_34gi2")
+region = Rect2(32, 448, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hre1t"]
+atlas = ExtResource("1_34gi2")
+region = Rect2(96, 448, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfy41"]
+atlas = ExtResource("1_34gi2")
+region = Rect2(64, 448, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rp1wf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hf060")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hre1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfy41")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Toolbox" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_hf060")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rp1wf")
+offset = Vector2(16, 8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 16, 0, 8, 6, 8, 6, 6, 7, 6, 7, 5, 12, 5, 12, 6, 13, 6, 13, 8, 20, 8, 20, 16)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
