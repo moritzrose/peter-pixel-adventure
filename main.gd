@@ -8,11 +8,11 @@ var current_action
 enum {OPEN, CLOSE, USE, TALK, PUSH, PULL, LOOK, TAKE}
 
 @onready var levelcontainer: MarginContainer = $Levelcontainer
+@onready var character: CharacterBody2D = $Levelcontainer/Character
 
 func _ready() -> void:
 	current_level = levelcontainer.get_child(0)
 	current_level.connect("item_clicked", on_item_clicked)
-
 	
 func on_item_clicked(item):
 	if current_action == OPEN:
