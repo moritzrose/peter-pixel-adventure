@@ -1,63 +1,117 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1ffl3th3gtnn"]
+[gd_scene load_steps=8 format=3 uid="uid://d1ffl3th3gtnn"]
 
 [ext_resource type="Script" uid="uid://bpwvo0ehs6q1c" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c8t64qgpuh0o" path="res://forrest/forrest.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://iga1la83sdft" path="res://characters/character.tscn" id="3_h2yge"]
+[ext_resource type="FontFile" uid="uid://mq3uu5ucl2ci" path="res://fonts/lucasarts-scumm-subtitle-roman.otf" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://caj1e3qg2xtbu" path="res://forest-tileset-pack/mp_forest_tileset_pack/tileset_all.png" id="5_lquwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
+atlas = ExtResource("5_lquwl")
+region = Rect2(385, 213, 16, 16)
 
 [node name="Main" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 1280.0
+offset_bottom = 639.0
 script = ExtResource("1_0xm2m")
 
 [node name="Levelcontainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(1280, 480)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Forrest" parent="Levelcontainer" instance=ExtResource("2_0xm2m")]
 
 [node name="Character" parent="Levelcontainer" instance=ExtResource("3_h2yge")]
 position = Vector2(168, 390.00003)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lquwl")
 
-[node name="Actions" type="GridContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Actions" type="GridContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 24
 columns = 4
 
-[node name="Use" type="Button" parent="HBoxContainer/Actions"]
+[node name="Use" type="Button" parent="Panel/HBoxContainer/Actions"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 25
 text = "Benutzen"
 
-[node name="Open" type="Button" parent="HBoxContainer/Actions"]
+[node name="Open" type="Button" parent="Panel/HBoxContainer/Actions"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 25
 text = "Öffnen"
 
-[node name="Close" type="Button" parent="HBoxContainer/Actions"]
+[node name="Take" type="Button" parent="Panel/HBoxContainer/Actions"]
 layout_mode = 2
-text = "Schließen"
-
-[node name="Take" type="Button" parent="HBoxContainer/Actions"]
-layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 25
 text = "Nehmen"
 
-[node name="Inventory" type="GridContainer" parent="HBoxContainer"]
+[node name="Pull" type="Button" parent="Panel/HBoxContainer/Actions"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 25
+text = "Ziehen"
 
-[node name="Panel" type="Panel" parent="HBoxContainer/Inventory"]
+[node name="Close" type="Button" parent="Panel/HBoxContainer/Actions"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 25
+text = "Schließen"
+
+[node name="Give" type="Button" parent="Panel/HBoxContainer/Actions"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 25
+text = "Geben"
+
+[node name="TalkTo" type="Button" parent="Panel/HBoxContainer/Actions"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 25
+text = "Reden"
+
+[node name="Push" type="Button" parent="Panel/HBoxContainer/Actions"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 25
+text = "Drücken"
+
+[node name="Inventory" type="GridContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Inventory"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7mycd")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="pressed" from="HBoxContainer/Actions/Use" to="." method="_on_use_pressed"]
-[connection signal="pressed" from="HBoxContainer/Actions/Open" to="." method="_on_open_pressed"]
-[connection signal="pressed" from="HBoxContainer/Actions/Close" to="." method="_on_close_pressed"]
-[connection signal="pressed" from="HBoxContainer/Actions/Take" to="." method="_on_take_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Actions/Use" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Actions/Open" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Actions/Take" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Actions/Pull" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Actions/Close" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Actions/Give" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Actions/TalkTo" to="." method="_on_open_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Actions/Push" to="." method="_on_open_pressed"]

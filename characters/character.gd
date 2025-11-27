@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
-@export var CHARACTER_SPEED = 150
+@export var CHARACTER_SPEED = 132
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-var current_target = position
+var current_target
 
 func _ready() -> void:
 	animated_sprite_2d.play("idle")
+	current_target = global_position
 	print(current_target)
 
 func _input(event: InputEvent) -> void:
