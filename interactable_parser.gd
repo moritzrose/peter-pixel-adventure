@@ -20,8 +20,6 @@ static var mappings = {
 
 var level_mapping
 
-	
-
 func create_objects():
 	for cell_pos in tile_map_layer.get_used_cells():
 		var obj_id:Vector2i = tile_map_layer.get_cell_atlas_coords(cell_pos)

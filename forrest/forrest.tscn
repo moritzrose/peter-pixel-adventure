@@ -32,7 +32,7 @@ tile_set = ExtResource("1_3q485")
 
 [node name="Interactables" type="TileMapLayer" parent="."]
 position = Vector2(0, 1)
-tile_map_data = PackedByteArray("AAACAAcAAAAYAA8AAAAHAAgAAAALABEAAAAQAAUAAAARACUAAAAQAAcAAAANACYAAAADAAUAAAABABwAAAA=")
+tile_map_data = PackedByteArray("AAACAAcAAAAYAA8AAAAQAAUAAAARACUAAAAQAAcAAAANACYAAAACAAUAAAABABwAAAA=")
 tile_set = ExtResource("1_3q485")
 
 [node name="Deco2" type="TileMapLayer" parent="."]

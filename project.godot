@@ -23,6 +23,10 @@ Actions="*res://actions.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=640
 
+[gui]
+
+theme/custom_font="uid://cvy6d7imiv56j"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
