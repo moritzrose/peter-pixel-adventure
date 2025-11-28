@@ -2,11 +2,16 @@ extends Node2D
 
 signal item_clicked
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var interactable_list: Node2D
+
+var bridge_repaired
+
+func _ready():
+	bridge_repaired = false
+
+	for item in interactable_list.get_children():
+		item.connect("clicked", _on_item_clicked)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_item_clicked(item):
+	emit_signal("item_clicked", item)

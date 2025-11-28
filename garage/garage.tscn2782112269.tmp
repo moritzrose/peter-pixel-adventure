@@ -31,6 +31,5 @@ script = ExtResource("4_rapee")
 [node name="Interactable_List" type="Node2D" parent="."]
 
 [node name="Interactable_Parser" parent="." node_paths=PackedStringArray("interactable_list", "tile_map_layer") instance=ExtResource("4_0jmjn")]
-level = "garage"
 interactable_list = NodePath("../Interactable_List")
 tile_map_layer = NodePath("../Interactables")

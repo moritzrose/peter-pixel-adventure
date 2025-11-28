@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://iga1la83sdft"]
+[gd_scene load_steps=44 format=3 uid="uid://iga1la83sdft"]
 
 [ext_resource type="Script" uid="uid://dnt86wcymj0hp" path="res://characters/character.gd" id="1_uq2ax"]
 [ext_resource type="Texture2D" uid="uid://clb7idsxdv6ak" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_pickup_ground_0.png" id="1_x8lwa"]
@@ -35,6 +35,12 @@
 [ext_resource type="Texture2D" uid="uid://cwnjqg6axpo2q" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_walk_5.png" id="24_bedwa"]
 [ext_resource type="Texture2D" uid="uid://d12m0kmouu3v1" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_walk_6.png" id="25_drvvf"]
 [ext_resource type="Texture2D" uid="uid://bfriwrqtyc0ej" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_walk_7.png" id="26_4q6ma"]
+[ext_resource type="Texture2D" uid="uid://cud5qx1w83w18" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_punch_0.png" id="28_vwgae"]
+[ext_resource type="Texture2D" uid="uid://co33ds7kbu2wf" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_punch_1.png" id="29_ql0yh"]
+[ext_resource type="Texture2D" uid="uid://hbr3tted8ti" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_punch_2.png" id="30_2bni3"]
+[ext_resource type="Texture2D" uid="uid://bk8m1kvtv114u" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_punch_3.png" id="31_2hcsg"]
+[ext_resource type="Texture2D" uid="uid://sig58nok1qst" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_punch_4.png" id="32_5jxfy"]
+[ext_resource type="Texture2D" uid="uid://b65pj3gp4sib6" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_punch_5.png" id="33_y85yh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5tg0k"]
 animations = [{
@@ -129,6 +135,29 @@ animations = [{
 }],
 "loop": false,
 "name": &"pick_up_wall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_vwgae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ql0yh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_2bni3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_2hcsg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_5jxfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_y85yh")
+}],
+"loop": false,
+"name": &"throw",
 "speed": 10.0
 }, {
 "frames": [{

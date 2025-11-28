@@ -1,8 +1,8 @@
 extends Node
 
-class_name InteractableMapping
-
 static var mapping = {
+	
+	#garage
 	Vector2i(30,36): {"scene": preload("res://garage/notes.tscn")}, # "notes"
 	Vector2i(2, 28): {"scene": preload("res://garage/toolbox.tscn")}, #  "toolbox",
 	Vector2i(6, 31): {"scene": null}, #  "fire_extinguisher",

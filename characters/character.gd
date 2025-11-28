@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var current_target
+var animation_running
 
 func _ready() -> void:
 	animated_sprite_2d.play("idle")

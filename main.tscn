@@ -25,7 +25,7 @@ layout_mode = 2
 [node name="Forrest" parent="Levelcontainer" instance=ExtResource("2_0xm2m")]
 
 [node name="Character" parent="Levelcontainer" instance=ExtResource("3_h2yge")]
-position = Vector2(168, 390.00003)
+position = Vector2(22, 390)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
