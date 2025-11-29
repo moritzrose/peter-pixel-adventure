@@ -4,9 +4,11 @@ signal clicked
 
 @export var description = "Zweig"
 
+var item_id = get_instance_id()
+
 func _on_mouse_entered() -> void:
 	# show tooltip with item description
-	print(description)
+	print(description, global_position)
 	
 func take():
 	queue_free()

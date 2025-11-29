@@ -1,9 +1,8 @@
 extends VBoxContainer
 
-var DEBUG: bool = true
-
 var current_level: Node2D
 var current_action
+var future_task: FutureTask
 
 enum {OPEN, CLOSE, USE, TALK, PUSH, PULL, LOOK, TAKE, GIVE}
 
@@ -14,7 +13,16 @@ enum {OPEN, CLOSE, USE, TALK, PUSH, PULL, LOOK, TAKE, GIVE}
 func _ready() -> void:
 	current_level = levelcontainer.get_child(0)
 	current_level.connect("item_clicked", on_item_clicked)
-	
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		var mouse_pos = get_global_mouse_position()
+		if mouse_pos.y < 480:
+			var current_target = Vector2(get_global_mouse_position().x, GameConstants.LEVEL_WALKING_HEIGHT)
+			character.current_target = current_target
+			future_task = null
+			print("Walk to " + str(current_target))
+
 func on_item_clicked(item):
 	if current_action == OPEN:
 		open_item(item)
@@ -31,14 +39,21 @@ func on_item_clicked(item):
 	elif current_action == LOOK:
 		lookAt_item(item)
 	elif current_action == TAKE:
-		take_item(item)
+		if character.can_reach(item.item_id):
+			take_item(item)
+		else:
+			future_task = FutureTask.new()
+			future_task.item_id = item.item_id
+			future_task.item = item
+			future_task.action = Callable(self, "take_item()")
+			print("Going closer to " + item.description + " to execute: " + str(current_action))
 	elif current_action == GIVE:
 		give_item(item)
 
 func open_item(item):
 	var success = item.open()
 	
-	if DEBUG:
+	if GameConstants.DEBUG:
 		if success:
 			print(item.description + " has been opened")
 		else:
@@ -47,7 +62,7 @@ func open_item(item):
 func close_item(item):
 	var success = item.close()
 	
-	if DEBUG:
+	if GameConstants.DEBUG:
 		if success:
 			print(item.description + " has been closed")
 		else:
@@ -56,7 +71,7 @@ func close_item(item):
 func use_item(item):
 	var success = item.use()
 	
-	if DEBUG:
+	if GameConstants.DEBUG:
 		if success:
 			print(item.description + " has been closed")
 		else:
@@ -65,7 +80,7 @@ func use_item(item):
 func talkTo_item(item):
 	var success = item.talkTo()
 	
-	if DEBUG:
+	if GameConstants.DEBUG:
 		if success:
 			print(item.description + " has been closed")
 		else:
@@ -74,7 +89,7 @@ func talkTo_item(item):
 func push_item(item):
 	var success = item.push()
 	
-	if DEBUG:
+	if GameConstants.DEBUG:
 		if success:
 			print(item.description + " has been closed")
 		else:
@@ -83,7 +98,7 @@ func push_item(item):
 func pull_item(item):
 	var success = item.pull()
 	
-	if DEBUG:
+	if GameConstants.DEBUG:
 		if success:
 			print(item.description + " has been closed")
 		else:
@@ -92,7 +107,7 @@ func pull_item(item):
 func lookAt_item(item):
 	var success = item.look_at()
 	
-	if DEBUG:
+	if GameConstants.DEBUG:
 		if success:
 			print(item.description + " has been closed")
 		else:
@@ -100,12 +115,13 @@ func lookAt_item(item):
 
 func take_item(item):
 	var success = item.take()
+	character.take_behind()
 	
 	if success:
 		var inventory_item: Label = Label.new()
 		inventory_item.text = item.description
 		inventory.add_child(inventory_item)
-		if DEBUG:
+		if GameConstants.DEBUG:
 			print("Took " + item.description)
 		else:
 			print("Could not take " + item.description)
@@ -113,7 +129,7 @@ func take_item(item):
 func give_item(item):
 	var success = item.give()
 	
-	if DEBUG:
+	if GameConstants.DEBUG:
 		if success:
 			print(item.description + " has been closed")
 		else:
@@ -150,3 +166,11 @@ func _on_talk_to_pressed() -> void:
 
 func _on_push_pressed() -> void:
 	current_action = PUSH
+
+
+func _on_character_items_in_reach_changed() -> void:
+	if future_task:
+		if character.can_reach(future_task.item_id):
+			print("Execute Callable on " + str(future_task.item_id))
+			future_task.action.call(future_task.item)			
+			future_task = null
