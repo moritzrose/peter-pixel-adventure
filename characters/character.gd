@@ -58,7 +58,7 @@ func _on_pick_up_range_area_entered(area: Area2D) -> void:
 		items_in_reach_changed.emit()
 		
 		if GameConstants.DEBUG:
-			print(items_in_reach)
+			print("Items in reach: " + str(items_in_reach))
 
 func _on_pick_up_range_area_exited(area: Area2D) -> void:
 	if area.item_id:

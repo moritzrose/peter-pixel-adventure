@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://iwaw61ls11nu"]
+[gd_scene load_steps=5 format=3 uid="uid://iwaw61ls11nu"]
 
 [ext_resource type="Script" uid="uid://bt0gkxm3ylp5k" path="res://forrest/stick.gd" id="1_3sf45"]
 [ext_resource type="Texture2D" uid="uid://caj1e3qg2xtbu" path="res://forest-tileset-pack/mp_forest_tileset_pack/tileset_all.png" id="1_tjjls"]
+[ext_resource type="PackedScene" uid="uid://bpaisnk4kqt5u" path="res://tooltip.tscn" id="3_v2nxq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tjjls"]
 size = Vector2(42, 11)
@@ -22,5 +23,8 @@ region_rect = Rect2(16, 450, 48, 16)
 position = Vector2(31, 11.5)
 shape = SubResource("RectangleShape2D_tjjls")
 
+[node name="Tooltip" parent="." instance=ExtResource("3_v2nxq")]
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

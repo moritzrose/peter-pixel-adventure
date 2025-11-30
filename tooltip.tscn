@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpaisnk4kqt5u"]
+
+[ext_resource type="Script" uid="uid://cqxqf2plmn13w" path="res://tooltip.gd" id="1_gwequ"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwequ"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Tooltip" type="PanelContainer"]
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -969.0
+offset_bottom = -607.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gwequ")
+script = ExtResource("1_gwequ")
+
+[node name="Content" type="RichTextLabel" parent="."]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "TEST TOOLTIP"
+fit_content = true

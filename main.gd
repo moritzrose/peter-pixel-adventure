@@ -2,9 +2,10 @@ extends VBoxContainer
 
 var current_level: Node2D
 var current_action
+var current_tooltip: Tooltip
 var future_task: FutureTask
 
-enum {OPEN, CLOSE, USE, TALK, PUSH, PULL, LOOK, TAKE, GIVE}
+enum {OPEN, CLOSE, USE, TALK, PUSH, PULL, LOOK, TAKE, GIVE, WALK}
 
 @onready var inventory: GridContainer = $Panel/HBoxContainer/MarginContainer/Inventory
 @onready var levelcontainer: MarginContainer = $Levelcontainer
@@ -13,7 +14,14 @@ enum {OPEN, CLOSE, USE, TALK, PUSH, PULL, LOOK, TAKE, GIVE}
 func _ready() -> void:
 	current_level = levelcontainer.get_child(0)
 	current_level.connect("item_clicked", on_item_clicked)
+	current_level.connect("show_item_tooltip", on_show_item_tooltip)
+	current_action = WALK
 
+func _process(delta: float) -> void:
+	if current_tooltip:
+		var mouse_pos = get_global_mouse_position()
+		current_tooltip.global_position = mouse_pos
+		
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		var mouse_pos = get_global_mouse_position()
@@ -22,6 +30,13 @@ func _input(event: InputEvent) -> void:
 			character.current_target = current_target
 			future_task = null
 			print("Walk to " + str(current_target))
+
+func on_show_item_tooltip(tooltip: Tooltip):
+	if tooltip:
+		current_tooltip = tooltip
+	else:
+		current_tooltip = null
+		
 
 func on_item_clicked(item):
 	if current_action == OPEN:
@@ -45,7 +60,7 @@ func on_item_clicked(item):
 			future_task = FutureTask.new()
 			future_task.item_id = item.item_id
 			future_task.item = item
-			future_task.action = Callable(self, "take_item()")
+			future_task.action = Callable(self, "take_item")
 			print("Going closer to " + item.description + " to execute: " + str(current_action))
 	elif current_action == GIVE:
 		give_item(item)
@@ -171,6 +186,6 @@ func _on_push_pressed() -> void:
 func _on_character_items_in_reach_changed() -> void:
 	if future_task:
 		if character.can_reach(future_task.item_id):
-			print("Execute Callable on " + str(future_task.item_id))
+			print("Execute Callable " + str(future_task.action.get_method()) + " on " + str(future_task.item_id) + ": " + future_task.item.description)
 			future_task.action.call(future_task.item)			
 			future_task = null

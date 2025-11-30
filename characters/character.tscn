@@ -193,9 +193,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwgae"]
 size = Vector2(16, 28.666668)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vwgae"]
-radius = 15.0
-height = 40.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql0yh"]
+size = Vector2(20.333332, 35)
 
 [node name="Character" type="CharacterBody2D"]
 scale = Vector2(3, 3)
@@ -217,8 +216,9 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpRange"]
-position = Vector2(0.6666667, -18.333336)
-shape = SubResource("CapsuleShape2D_vwgae")
+position = Vector2(0.8333332, -17.833336)
+shape = SubResource("RectangleShape2D_ql0yh")
+debug_color = Color(0.33266708, 0.6178428, 0.23634535, 0.41960785)
 
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
