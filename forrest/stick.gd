@@ -4,6 +4,7 @@ signal clicked
 signal hovering
 
 @export var description = "Zweig"
+@export var observation = "Ein ungefähr 2m langer Zweig."
 @onready var tooltip: Tooltip = $Tooltip
 
 var item_id = get_instance_id()
@@ -22,6 +23,9 @@ func _on_mouse_exited() -> void:
 func take():
 	queue_free()
 	return true
+	
+func lookAt():
+	return observation
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:

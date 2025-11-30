@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://iga1la83sdft"]
+[gd_scene load_steps=46 format=3 uid="uid://iga1la83sdft"]
 
 [ext_resource type="Script" uid="uid://dnt86wcymj0hp" path="res://characters/character.gd" id="1_uq2ax"]
 [ext_resource type="Texture2D" uid="uid://clb7idsxdv6ak" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_pickup_ground_0.png" id="1_x8lwa"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://bk8m1kvtv114u" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_punch_3.png" id="31_2hcsg"]
 [ext_resource type="Texture2D" uid="uid://sig58nok1qst" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_punch_4.png" id="32_5jxfy"]
 [ext_resource type="Texture2D" uid="uid://b65pj3gp4sib6" path="res://character-animation-asset-pack/mp_character_animation_asset_pack_v1.0/Exported PNGs/Female/Character 3/Clothes 3/Character3F_3_punch_5.png" id="33_y85yh"]
+[ext_resource type="PackedScene" uid="uid://bpaisnk4kqt5u" path="res://tooltip.tscn" id="42_ql0yh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5tg0k"]
 animations = [{
@@ -220,7 +221,16 @@ position = Vector2(0.8333332, -17.833336)
 shape = SubResource("RectangleShape2D_ql0yh")
 debug_color = Color(0.33266708, 0.6178428, 0.23634535, 0.41960785)
 
+[node name="SpeechbubbleTimer" type="Timer" parent="."]
+
+[node name="Speechbubble" parent="." instance=ExtResource("42_ql0yh")]
+offset_left = 34.0
+offset_top = -148.0
+offset_right = -935.0
+offset_bottom = -746.0
+
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="PickUpRange" to="." method="_on_pick_up_range_area_entered"]
 [connection signal="area_exited" from="PickUpRange" to="." method="_on_pick_up_range_area_exited"]
+[connection signal="timeout" from="SpeechbubbleTimer" to="." method="_on_speechbubble_timer_timeout"]

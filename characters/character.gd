@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var CHARACTER_SPEED = 132
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var speechbubble_timer: Timer = $SpeechbubbleTimer
+@onready var speechbubble: Tooltip = $Speechbubble
 
 signal items_in_reach_changed
 
@@ -13,7 +15,7 @@ var items_in_reach: Dictionary = {}
 func _ready() -> void:
 	animated_sprite_2d.play("idle")
 	current_target = global_position
-	print(current_target)
+	speechbubble.hide()
 
 func _physics_process(_delta: float) -> void:
 	if !animation_running:
@@ -37,6 +39,12 @@ func take_ground():
 	animation_running = true
 	animated_sprite_2d.play("pick_up_behind")
 
+func observe(observation):
+	speechbubble.set_text(observation)
+	speechbubble.show()
+	speechbubble_timer.start(5)
+	
+	
 func take_in_front():
 	pass
 
@@ -71,3 +79,8 @@ func can_reach(item_id) -> bool:
 	if items_in_reach.has(item_id):
 		return true
 	return false
+
+
+func _on_speechbubble_timer_timeout() -> void:
+	speechbubble.hide()
+	speechbubble.set_text("")

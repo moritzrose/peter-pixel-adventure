@@ -120,13 +120,14 @@ func pull_item(item):
 			print(item.description + " was already closed")
 
 func lookAt_item(item):
-	var success = item.look_at()
+	var observation = item.lookAt()
+	character.observe(observation)
 	
 	if GameConstants.DEBUG:
-		if success:
-			print(item.description + " has been closed")
+		if observation:
+			print("Observation of " + item.description + ": " + observation)
 		else:
-			print(item.description + " was already closed")
+			print("Could not observe " + item.description)
 
 func take_item(item):
 	var success = item.take()
@@ -183,9 +184,15 @@ func _on_push_pressed() -> void:
 	current_action = PUSH
 
 
+
+
 func _on_character_items_in_reach_changed() -> void:
 	if future_task:
 		if character.can_reach(future_task.item_id):
 			print("Execute Callable " + str(future_task.action.get_method()) + " on " + str(future_task.item_id) + ": " + future_task.item.description)
 			future_task.action.call(future_task.item)			
 			future_task = null
+
+
+func _on_look_at_pressed() -> void:
+	current_action = LOOK

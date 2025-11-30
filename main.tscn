@@ -41,7 +41,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/h_separation = 40
-theme_override_constants/v_separation = 24
+theme_override_constants/v_separation = 18
 columns = 4
 
 [node name="Use" type="Button" parent="Panel/HBoxContainer/Actions"]
@@ -92,6 +92,13 @@ theme_override_fonts/font = ExtResource("4_1bvp3")
 theme_override_font_sizes/font_size = 25
 text = "Drücken"
 
+[node name="LookAt" type="Button" parent="Panel/HBoxContainer/Actions"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1bvp3")
+theme_override_font_sizes/font_size = 25
+text = "Schaue
+"
+
 [node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -115,3 +122,4 @@ columns = 3
 [connection signal="pressed" from="Panel/HBoxContainer/Actions/Give" to="." method="_on_give_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/Actions/TalkTo" to="." method="_on_talk_to_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/Actions/Push" to="." method="_on_push_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Actions/LookAt" to="." method="_on_look_at_pressed"]
